@@ -1,0 +1,264 @@
+{
+  "cities": [
+    {
+      "clues": [
+        "@she said @she wanted to study the great pyramid of Giza.",
+        "@she wanted to sail down the Nile.",
+        "I know that @she wanted to see Arabic cinematography.",
+        "I heard @her talk about going to the city of a thousand minarets.",
+        "I remember @she said that @she is going to eat Kushari.",
+        "Yes I spoke to @her, @she was on her way to see Tahrir Square."
+      ],
+      "facts": [
+        "The great pyramid of Giza was the tallest man-made structure in the world for over 3,800 years.",
+        "Cairo has the oldest and largest film and music industries in the Arab world.",
+        "The pyramids, built thousands of years ago by ancient Egyptian pharaohs, are one of the chief tourist attractions of modern-day Cairo.",
+        "It is also known as \"The City of a Thousand Minarets\".",
+        "Kushari is an Egyptian national dish, made of rice, macaroni and lentils mixed together, topped with a tomato-vinegar sauce.",
+        "Tahrir Square is at the heart of Cairo, it has witnessed several major protests over the years."
+      ],
+      "images": [
+        "data/cairo.jpg"
+      ],
+      "name": "Cairo",
+      "sources": [
+        {
+          "name": "Great Sphinx of Giza (foreground) Pyramid of Menkaure (background). Cairo, Egypt, North Africa \nBy Mstyslav Chernov (Self-photographed, http://mstyslav-chernov.com/) [CC BY-SA 3.0 (http://creativecommons.org/licenses/by-sa/3.0)], via Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:Great_Sphinx_of_Giza_%28foreground%29_Pyramid_of_Menkaure_%28background%29._Cairo,_Egypt,_North_Africa.jpg"
+        },
+        {
+          "name": "Info",
+          "url": "https://en.wikipedia.org/wiki/Cairo"
+        }
+      ],
+      "title": "Cairo, Egypt’s capital, is set on the Nile River."
+    },
+    {
+      "clues": [
+        "@she said @she wanted to visit the ancient city of Smyrna.",
+        "I heard @she wanted to explore the ancient Greek Agora.",
+        "@she spoke about seeing a marble clock tower in western Anatolia."
+      ],
+      "facts": [
+        "The name \"İzmir\" derives from the former ancient Greek city \"Smyrna\".",
+        "The Agora of Smyrna is a well preserved attraction in Izmir.",
+        "The marble Clock Tower in the harbor stands 25 meters tall."
+      ],
+      "images": [
+        "data/izmir.jpg"
+      ],
+      "name": "Izmir",
+      "sources": [
+        {
+          "name": "Image",
+          "url": "https://commons.wikimedia.org/wiki/File:Izmir,_torre_dell%27orologio_03.JPG"
+        },
+        {
+          "name": "Info",
+          "url": "https://en.wikipedia.org/wiki/%C4%B0zmir"
+        }
+      ],
+      "title": "Izmir is a city in the western extremity of Anatolia, Turkey."
+    },
+    {
+      "clues": [
+        "I heard @she wanted to picnic under cherry blossoms.",
+        "@she wanted to go see a professor in a renowned Asian university.",
+        "@she was interested in the historical Edo village"
+      ],
+      "facts": [
+        "Originaly a small fishing village named Edo, fortified by the Edo clan.",
+        "Toyko has man universities, include the headquarters for the United Nations University.",
+        "Once cherry blossoms bloom in spring, residents gather in national parks for picnics under the blossoms."
+      ],
+      "images": [
+        "data/tokyo.jpg"
+      ],
+      "name": "Tokyo",
+      "sources": [
+        {
+          "name": "Image",
+          "url": "https://commons.wikimedia.org/wiki/File:Sakuraintokyo.jpg"
+        },
+        {
+          "name": "Info",
+          "url": "https://en.wikipedia.org/wiki/Tokyo"
+        }
+      ],
+      "title": "Tokyo is a prefecture and the capital of Japan."
+    },
+    {
+      "clues": [
+        "@she said @she wanted to visit a neighboring country of South Africa.",
+        "@she wanted to go bird watching in a famous game reserve in sub-saharan Africa.",
+        "I heard @she wanted to to study wildebeest in sub-saharan Africa."
+      ],
+      "facts": [
+        "The banks of the Notwane River have been occupied since the middle Stone Age. Certain sections of the Notwane River form the international boundary with South Africa.",
+        "Gabarone Game Reserve is famous for its birdwatching. Birds in the marshy section of the park include snake eagles, boubou, gallinule, kingfishers, and hornbills.",
+        "Gabarone Game Reserve was built in 1988 and is now the third-busiest in Botswana. Examples of animals in the park are impala, kudu, ostriches, wildebeest, zebras, gemsbok, bushbuck, springbok, duiker, common eland, and common warthogs."
+      ],
+      "images": [
+        "data/gabarone.jpg"
+      ],
+      "name": "Gabarone",
+      "sources": [
+        {
+          "name": "Kgale Hill 2 By Athena Lao [CC BY 2.0 (http://creativecommons.org/licenses/by/2.0)], via Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:Kgale_Hill_2.jpg"
+        },
+        {
+          "name": "Info",
+          "url": "https://en.wikipedia.org/?title=Gaborone"
+        }
+      ],
+      "title": "Gaborone is the capital and largest city of Botswana."
+    },
+    {
+      "clues": [
+        "@she wanted to visit a famous diamond mine in Africa.",
+        "@she said @she wanted to see the first city in the southern hemisphere that installed electric street lights.",
+        "I know @she wanted to see the Big Hole diamond mine museum."
+      ],
+      "facts": [
+        "The city has considerable historical significance due to its diamond mining past and the siege during the Second Boer War.",
+        "The Big Hole, previously known as the Kimberley Mine Museum, is a recreated townscape and museum, with Big Hole viewing platform and other features, situated next to the Kimberley Mine.",
+        "On 2 September 1882, Kimberley became the first town in the southern hemisphere to install electric street lighting."
+      ],
+      "images": [
+        "data/kimberley.jpg"
+      ],
+      "name": "Kimberley",
+      "sources": [
+        {
+          "name": "Open pit mine By Irene2005 [CC BY 2.0 (http://creativecommons.org/licenses/by/2.0)], via Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:Open_pit_mine.jpg"
+        },
+        {
+          "name": "Info",
+          "url": "https://en.wikipedia.org/wiki/Kimberley,_Northern_Cape"
+        }
+      ],
+      "title": "Kimberley is the capital of the Northern Cape Province of South Africa."
+    },
+    {
+      "clues": [
+        "@she said she wanted to visit Dracula's Castle.",
+        "I heard @she wanted to attend the Golden Stag music festival.",
+        "I know @she wanted to hike on top of the Carpathian Mountains.",
+        "@she was reading a book about The Carpathian Mountains."
+      ],
+      "facts": [
+        "Bran Castle, also known as Dracula's Castle, is situated in Transylvania.",
+        "The Golden Stag Festival is an annual international music festival held in Braşov, Romania.",
+        "The Carpathian Mountains form an arc roughly 1,500 km (932 mi) long, the habitat for the largest European populations of brown bears, wolves, chamois and lynxes, with the highest concentration in Romania."
+      ],
+      "images": [
+        "data/transylvania.jpg"
+      ],
+      "name": "Transylvania",
+      "sources": [
+        {
+          "name": "Castelul Bran - 2012 By Sîmbotin (Own work) [CC BY-SA 3.0 ro (http://creativecommons.org/licenses/by-sa/3.0/ro/deed.en)], via Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:Castelul_Bran_-_2012.jpg"
+        },
+        {
+          "name": "Info",
+          "url": "https://en.wikipedia.org/wiki/Transylvania"
+        }
+      ],
+      "title": "Transylvania is a historical region in the central part of Romania, known for the scenic beauty of its Carpathian landscape and its rich history."
+    },
+    {
+      "clues": [
+        "@she spoke of a meeting at the headquarters of the United Nations.",
+        "I remember @she had some business in Times Square.",
+        "I heard @her talk about seeing The Statue of Liberty.",
+        "@she said she wanted to visit The Big Apple.",
+        "I heard @she wanted to visit Central Park."
+      ],
+      "facts": [
+        "It is home to the headquarters of the United Nations.",
+        "As many as 800 languages are spoken in New York, making it the most linguistically diverse city in the world.",
+        "Times Square is a major commercial intersection and neighborhood in Midtown Manhattan. It is sometimes referred to as The Crossroads of the World and The Center of the Universe.",
+        "The Statue of Liberty was a gift to the United States from the people of France."
+      ],
+      "images": [
+        "data/newyork.jpg"
+      ],
+      "name": "New York",
+      "sources": [
+        {
+          "name": "Liberty Island photo D Ramey Logan By WPPilot (Own work) [CC BY 4.0 (http://creativecommons.org/licenses/by/4.0)], via Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:Liberty_Island_photo_D_Ramey_Logan.jpg"
+        },
+        {
+          "name": "Info",
+          "url": "https://en.wikipedia.org/wiki/New_York_City"
+        }
+      ],
+      "title": "New York is a city in the north American state of the same name. "
+    },
+    {
+      "clues": [
+        "@she mentioned visiting one of the first universities in Europe.",
+        "We spoke about @her visiting the Louvre art museum.",
+        "Yes I remember @her, @she was going to visit Notre Dame Cathedral.",
+        "@she said @she was going to the top of the Eiffel Tower.",
+        "@she was reading a book about The City of Light."
+      ],
+      "facts": [
+        "The University of Paris was one of the first in Europe.",
+        "Paris is the home of the most visited art museum in the world, the Louvre.",
+        "The notable architectural landmarks of Paris include Notre Dame Cathedral (12th century); the Sainte-Chapelle (13th century); the Eiffel Tower (1889); and the Basilica of Sacré-Cœur on Montmartre (1914).",
+        "Paris is often referred to as \"The City of Light\" (La Ville Lumière), both because of its leading role during the Age of Enlightenment, and more literally because Paris was one of the first European cities to adopt gas street lighting."
+      ],
+      "images": [
+        "data/paris.jpg"
+      ],
+      "name": "Paris",
+      "sources": [
+        {
+          "name": "Louvre Museum By Benh LIEU SONG (Own work) [CC BY-SA 3.0 (http://creativecommons.org/licenses/by-sa/3.0)], via Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:Louvre_Museum_Wikimedia_Commons_2.jpg"
+        },
+        {
+          "name": "Info",
+          "url": "https://en.wikipedia.org/wiki/Paris"
+        }
+      ],
+      "title": "Paris is the capital of France, and situated on the Seine River."
+    }
+  ],
+  "places": [
+    {
+      "name": "Sports Club",
+      "respondents": [
+        "Coach",
+        "Flag Waver",
+        "Golf-Ball Hunter",
+        "Grounds Keeper",
+        "Jogger"
+      ]
+    },
+    {
+      "name": "Harbour",
+      "respondents": [
+        "Submarine Commander",
+        "Sailing Ship Captain",
+        "Pirate Parrot",
+        "Fisherman",
+        "Crane Operator"
+      ]
+    },
+    {
+      "name": "Foreign Ministry",
+      "respondents": [
+        "Secretary",
+        "Clerk",
+        "Calculator Operator",
+        "Feather Pen Wielder"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html ng-app="magentaMysteryApp">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>project magenta mystery</title>
+    <link rel="stylesheet" href="bootstrap/css/darkly.min.css">
+    <style>
+        /* Customize container */
+        
+        @media (min-width: 768px) {
+            .container {
+                max-width: 730px;
+            }
+        }
+        /* hide text of game nav buttons on small devices */
+        
+        @media (max-width: 480px) {
+            .gameNavButton {
+                display: none;
+            }
+        }
+        /*img {*/
+        /*    max-width: 100%;*/
+        /*    height: auto;*/
+        /*}*/
+        /* scale images on small devices -- scale ratio needs fixing */
+        /* @media (max-width: 480px) {
+            img {
+                max-width: 225px;
+                height: auto;
+            }
+        } */
+    </style>
+</head>
+
+<body ng-controller="viewController">
+
+    <!-- Loading screen -->
+    <div class="container" ng-hide="true">
+        <div class="panel panel-default">
+            <div class="panel-heading">Loading</div>
+            <div class="panel-body">
+                <span class="glyphicon glyphicon-eye-open"></span> Sorting Dossiers
+            </div>
+        </div>
+    </div>
+
+    <!-- Game container -->
+    <div class="container ngCloak" style="padding-top: 14px;">
+
+        <!-- New Case -->
+        <div class="panel panel-primary" ng-show="noCase() && !viewIsBriefing()">
+            <div class="panel-heading">
+                <span>Agent Sign-in</span> <span class="pull-right"><span class="glyphicon glyphicon-time"></span> {{ clock() }}</span>
+            </div>
+            <div class="panel-body">
+                <p>Welcome, agent!</p>
+                <p>Please sign your name:
+                    <input type="text" class="form-control" ng-model="magenta.detective.name">
+                </p>
+                <button class="btn btn-primary" ng-click="viewBriefing()">Briefing <span class="glyphicon glyphicon-chevron-right"></span></button>
+            </div>
+        </div>
+
+        <!-- New case briefing -->
+        <div class="panel panel-primary" ng-show="viewIsBriefing()">
+            <div class="panel-heading">
+                <span>Briefing</span> <span class="pull-right"><span class="glyphicon glyphicon-time"></span> {{ clock() }}</span>
+            </div>
+            <div class="panel-body">
+                <p>Agent {{ magenta.detective.name }}, </p>
+                <p>A thief has stolen {{ magenta.thief.artifact }}! You must track down and apprehend the suspect.</p>
+                <p>You have until Sunday 5 p.m.</p>
+                <button class="btn btn-success pull-right" ng-click="beginCase()"><span class="glyphicon glyphicon-search"></span> Investigate!</button>
+            </div>
+        </div>
+
+        <!-- Investigation in progress -->
+        <div ng-show="caseActive()">
+
+            <!-- Action buttons -->
+            <div class="text-center">
+                <div class="btn-group btn-group-justified" role="group">
+                    <a class="btn btn-lg btn-info active" ng-click="viewLocation()" ng-class="{ active: viewIsLocation() }" role="button"><span class="glyphicon glyphicon-globe"></span> <span class="gameNavButton">Location</span></a>
+                    <a class="btn btn-lg btn-info" ng-click="viewInvestigate()" ng-class="{ active: viewIsInvestigate() }" role="button"><span class="glyphicon glyphicon-search"></span> <span class="gameNavButton">Investigate</span></a>
+                    <a class="btn btn-lg btn-info" ng-click="viewDepart()" ng-class="{ active: viewIsDepart() }" role="button"><span class="glyphicon glyphicon-send"></span> <span class="gameNavButton">Depart</span></a>
+                    <a class="btn btn-lg btn-info" ng-click="viewInterpol()" ng-class="{ active: viewIsInterpol() }" role="button"><span class="glyphicon glyphicon-screenshot"></span> <span class="gameNavButton">Interpol</span></a>
+                </div>
+                <p></p>
+            </div>
+
+            <!-- A warning appears when the thief is in the current city -->
+            <div class="panel panel-warning" ng-show="thiefInCurrentCity()">
+                <div class="panel-heading">Be careful</div>
+                <div class="panel-body">
+                    <p>You received a threatening message! The suspect must be near!</p>
+                </div>
+            </div>
+            
+            <!-- Location panel -->
+            <div class="panel panel-primary" ng-show="viewIsLocation()">
+                <div class="panel-heading">
+                    <span>{{ detective.city.name }}</span> <span class="pull-right"><span class="glyphicon glyphicon-time"></span> {{ clock() }}</span>
+                </div>
+                <div class="panel-body">{{ detective.city.title }}
+                    <img class="img-thumbnail img-responsive center-block" ng-src="{{ detective.city.images[0] }}">
+                    <p>{{ detective.city.facts[0] }}</p>
+                </div>
+            </div>
+
+            <!-- Investigate panel -->
+            <div class="panel panel-primary" ng-show="viewIsInvestigate() && !isVisitingSomePlace()">
+                <div class="panel-heading">
+                    <span>Investigate</span> <span class="pull-right"><span class="glyphicon glyphicon-time"></span> {{ clock() }}</span>
+                </div>
+                <div class="panel-body">
+                    <div class="list-group">
+                        <a class="list-group-item" ng-repeat="place in places" href="#" ng-click="gotoPlace(place)">
+                            <h4 class=""><span class="glyphicon glyphicon-search" ng-class="{ 'glyphicon-check': hasVisitedPlace(place) }"></span> {{ place.name }}</h4>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Investagative details -->
+            <div class="panel panel-default" ng-show="viewIsInvestigate() && isVisitingSomePlace()">
+                <div class="panel-heading">
+                    <span>{{ currentPlace.name }}</span> <span class="pull-right"><span class="glyphicon glyphicon-time"></span> {{ clock() }}</span>
+                </div>
+                <div class="panel-body">{{ currentPlace.respondent }}: {{ currentPlace.clue }}</div>
+                <div class="panel-footer">
+                    <button class="btn btn-warning" ng-click="gotoPlace(undefined)"><span class="glyphicon glyphicon-chevron-left"></span> Back</button>
+                </div>
+            </div>
+
+            <!-- Depart panel -->
+            <div class="panel panel-primary" ng-show="viewIsDepart()">
+                <div class="panel-heading">
+                    <span>Depart from {{ detective.city.name }}</span> <span class="pull-right"><span class="glyphicon glyphicon-time"></span> {{ clock() }}</span>
+                </div>
+                <img class="img-thumbnail img-responsive center-block" src="holder.js/300x200?theme=sky">
+                <div class="btn-group btn-group-justified" role="group">
+                    <a href="#" class="btn btn-md btn-success" ng-repeat="d in destinations" ng-click="gotoCity(d, viewLocation)">{{ d.name }} <span class="glyphicon glyphicon glyphicon-chevron-right"></span></a>
+                </div>
+            </div>
+
+            <!-- Interpol panel -->
+            <div class="panel panel-primary" ng-show="viewIsInterpol()">
+                <div class="panel-heading">
+                    <span>Interpol</span> <span class="pull-right"><span class="glyphicon glyphicon-time"></span> {{ clock() }}</span>
+                </div>
+                <div class="panel-body">
+                    <p>Welcome to Interpol! Enter the suspect details to request a warrant:</p>
+                    <p>
+                        <label>Gender:
+                            <select class="form-control">
+                                <option value="">None</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </label>
+                    </p>
+                    <p>
+                        <label>Hobby:
+                            <select class="form-control">
+                                <option value="">None</option>
+                                <option value="tennis">Tennis</option>
+                                <option value="swimming">Swimming</option>
+                                <option value="croquet">Croquet</option>
+                                <option value="skydiving">Skydiving</option>
+                                <option value="mountainclimbing">Mountain climbing</option>
+                            </select>
+                        </label>
+                    </p>
+                    <p>
+                        <label>Hair:
+                            <select class="form-control">
+                                <option value="">None</option>
+                                <option value="black">black</option>
+                                <option value="red">red</option>
+                                <option value="brown">brown</option>
+                                <option value="purple">purple</option>
+                                <option value="blond">blond</option>
+                            </select>
+                        </label>
+                    </p>
+                    <p>
+                        <label>Trait:
+                            <select class="form-control">
+                                <option value="">None</option>
+                                <option value="ring">Ring</option>
+                                <option value="jewelry">Jewelry</option>
+                                <option value="tattoo">Tattoo</option>
+                            </select>
+                        </label>
+                    </p>
+                    <p>
+                        <label>Vehicle:
+                            <select class="form-control">
+                                <option value="">None</option>
+                                <option value="convertable">convertable</option>
+                                <option value="limousine">limousine</option>
+                                <option value="motorbike">motorbike</option>
+                            </select>
+                        </label>
+                    </p>
+
+                    <hr>
+                    <p>
+                        <button class="btn btn-danger"><span class="glyphicon glyphicon-king"></span> Request Warrant</button>
+                        <p><img class="" src="ui/ajax-loader.gif" /> Requesting...</p>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+        <!-- Investigation in progress -->
+
+        <!-- Case Failed -->
+        <div ng-show="caseFailed()">
+            <div class="panel panel-danger">
+                <div class="panel-heading">Case Failed</div>
+                <div class="panel-body">
+                    <p>Agent {{ magenta.detective.name }},</p>
+                    <p>You took too long to apprehend the suspect. This case is unsolved.</p>
+                    <p>Better luck next time!</p>
+                    <p>
+                        <button class="btn btn-warning" ng-click="beginCase()"><span class="glyphicon glyphicon-search"></span> Next Case</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Debug Information -->
+        <div class="panel panel-info">
+            <div class="panel-heading">Debug</div>
+            <div class="panel-body">
+                <h4>Detective</h4>
+                <p>
+                    city: {{ detective.city.name }}
+                    <br/> cities visited: {{ detective.citiesVisited }}
+                    <br/>
+                    <div class="alert alert-warning" role="alert" ng-show="thiefInThisCity(detective.city)">The thief is in this city!</div>
+                </p>
+                <h4>Thief</h4>
+                <p>
+                    name: {{ thief.name }}
+                    <br/> item: {{ thief.artifact }}
+                    <br/> city: {{ thief.city.name }}
+                    <br/> prev city: {{ thief.previousCity.name }}
+                    <br/>
+                </p>
+            </div>
+        </div>
+
+        <!-- Add space to scroll past bottom fixed menu -->
+        <div style="padding-top: 60px;"></div>
+
+        <!-- Static navbar -->
+        <nav class="navbar navbar-default navbar-fixed-bottom">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">{{ magenta.detective.rank }} {{ magenta.detective.name }}</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#">Home</a></li>
+                        <li class="active"><a href="#">Investigate</a></li>
+                        <li><a href="#">About</a></li>
+                    </ul>
+                </div>
+                <!--/.nav-collapse -->
+            </div>
+            <!--/.container-fluid -->
+        </nav>
+
+    </div>
+    <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>-->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/angular.js"></script>
+    <script type="text/javascript" src="app/controllers.js"></script>
+    <script type="text/javascript" src="js/helpers.js"></script>
+    <script type="text/javascript" src="js/constants.js"></script>
+
+    <!-- image placeholders -->
+    <script src="bootstrap/js/holder.min.js"></script>
+
+    <!-- auto hide mobile browser url bar -->
+    <script>
+        window.setTimeout(function() {
+            window.scrollTo(0, 1);
+        }, 10000);
+    </script>
+</body>
+
+</html>
